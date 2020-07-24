@@ -8,7 +8,7 @@ setuptools.setup(
     version="0.0.1",
     author="Ruben Natvik",
     author_email="ronatvik@gmail.com",
-    description="A framework for communication across separate python processes",
+    description="A module containing useful tools for digital signal processing.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/RNatvik/rntools",
