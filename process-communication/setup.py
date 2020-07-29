@@ -1,7 +1,11 @@
 import setuptools
 
+
 with open("README.md", 'r') as fh:
     long_description = fh.read()
+
+with open("requirements.txt", 'r') as req:
+    requirements = req.read().split('\n')
 
 setuptools.setup(
     name="process-communication",
@@ -11,6 +15,7 @@ setuptools.setup(
     description="A framework for communication across separate python processes",
     long_description=long_description,
     long_description_content_type="text/markdown",
+    install_requires=requirements,
     url="https://github.com/RNatvik/rntools",
     packages=setuptools.find_packages(exclude=('examples',)),
     classifiers=[
