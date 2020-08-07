@@ -4,11 +4,12 @@ import time
 
 class ScheduledTask:
 
-    def __init__(self, interval, task, *args, **kwargs):
+    def __init__(self, interval, task, *args, adaptive_interval=False, **kwargs):
         self.interval = interval
         self.task = task
         self.args = args
         self.kwargs = kwargs
+        self.adaptive_interval = adaptive_interval
         self.shutdown = False
         self.thread = threading.Thread(target=self._run)
         self.t = 0
@@ -21,6 +22,8 @@ class ScheduledTask:
                     pass
             except ValueError as e:
                 print('value_error')
+                if self.adaptive_interval:
+                    self.interval *= 1.01
             finally:
                 self.t += self.interval
                 self.task(*self.args, **self.kwargs)
@@ -34,7 +37,7 @@ class ScheduledTask:
         self.shutdown = True
 
 
-ival = 0.01
+ival = 0.001
 n = 1
 t0 = {key: time.time() for key in range(n)}
 lst = []
