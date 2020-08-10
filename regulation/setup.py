@@ -8,11 +8,11 @@ with open("requirements.txt", 'r') as req:
     requirements = req.read().split('\n')
 
 setuptools.setup(
-    name="dsp-module",
+    name="reg-tools",
     version="0.0.1",
     author="Ruben Natvik",
     author_email="ronatvik@gmail.com",
-    description="A module containing useful tools for digital signal processing.",
+    description="A package containing various regulation tools.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     install_requires=requirements,
