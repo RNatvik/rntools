@@ -21,7 +21,7 @@ class ScheduledTask:
                 while self.t >= time.time():
                     pass
             except ValueError as e:
-                print('value_error')
+                # print('value_error')
                 if self.adaptive_interval:
                     self.interval *= 1.01
             finally:
@@ -37,7 +37,7 @@ class ScheduledTask:
         self.shutdown = True
 
 
-ival = 0.001
+ival = 0.01
 n = 1
 t0 = {key: time.time() for key in range(n)}
 lst = []
@@ -50,7 +50,7 @@ def main():
         t = time.time()
         dt = t - t0[id]
         t0[id] = t
-        lst.append((id, dt, dt-ival))
+        lst.append((id, dt, dt - ival))
 
     tasks = []
     for i in range(n):
