@@ -59,3 +59,33 @@ class Filter:
         lst.pop()
         lst.insert(0, val)
         return lst
+
+
+class MultiChannelFilter:
+
+    def __init__(self, channels: int, b: list, a: list = None, k: float = 1):
+        """
+        Creates a multi channel filter, which is used for filtering multiple individual signals with the same filter coefficients.
+
+        :param channels: Number of channels / signals to filter
+        :param b: numerator coefficients of the transfer function (coeffs of X)
+        :param a: denominator coefficients of the transfer function (coeffs of Y)
+        :param k: output gain (default 1)
+        """
+        self.channels = channels
+        self.filters = []
+        for i in range(self.channels):
+            self.filters.append(Filter(b, a=a, k=k))
+
+    def filter_values(self, values: list):
+        """
+        Filters values
+
+        :param values: values to filter
+        :return: filtered values, None if wrong number of elements
+        """
+        if len(values) == self.channels:
+            filtered_values = [self.filters[i].filter_value(values[i]) for i in range(self.channels)]
+        else:
+            filtered_values = None
+        return filtered_values
