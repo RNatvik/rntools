@@ -36,7 +36,7 @@ class Publisher:
         :return: None
         """
         self.soc.connect((self.host, self.port))
-        d = {'type': 'publisher', 'topic': [self.topic], 'id': 'test_client'}
+        d = {'type': 'publisher', 'topic': [self.topic], 'id': self.id}
         self.soc.sendall(json.dumps(d).encode('utf-8'))
         self.connected = True
 
