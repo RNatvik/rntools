@@ -46,6 +46,14 @@ class Filter:
             y.append(self.filter_value(x))
         return y
 
+    def get_latest(self):
+        """
+        Returns the latest output value of the filter
+
+        :return: the latest output value of the filter
+        """
+        return self.output[0]
+
     def clear(self):
         """
         Clear the filter's stored input and output list
@@ -89,3 +97,11 @@ class MultiChannelFilter:
         else:
             filtered_values = None
         return filtered_values
+
+    def get_latest(self):
+        """
+        Returns each channel's latest output as a list
+
+        :return: each channel's latest output
+        """
+        return [self.filters[i].get_latest() for i in range(self.channels)]
