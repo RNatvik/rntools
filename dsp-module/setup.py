@@ -9,7 +9,7 @@ with open("requirements.txt", 'r') as req:
 
 setuptools.setup(
     name="dsp-module",
-    version="0.0.1",
+    version="0.0.2",
     author="Ruben Natvik",
     author_email="ronatvik@gmail.com",
     description="A module containing useful tools for digital signal processing.",

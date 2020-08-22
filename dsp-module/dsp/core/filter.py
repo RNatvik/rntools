@@ -64,8 +64,9 @@ class Filter:
         self.output = [0] * len(self.output)
 
     def _shift_list(self, lst: list, val: float):
-        lst.pop()
-        lst.insert(0, val)
+        if len(lst) > 0:
+            lst.pop()
+            lst.insert(0, val)
         return lst
 
 
