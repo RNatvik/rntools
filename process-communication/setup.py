@@ -9,7 +9,7 @@ with open("requirements.txt", 'r') as req:
 
 setuptools.setup(
     name="process-communication",
-    version="0.0.4",
+    version="0.0.5",
     author="Ruben Natvik",
     author_email="ronatvik@gmail.com",
     description="A framework for communication across separate python processes",

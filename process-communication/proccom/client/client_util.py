@@ -124,13 +124,17 @@ class Subscriber:
         self.soc.settimeout(1)
         while self.connected and not self.shutdown:
             try:
-                data = self.soc.recv(1024)
+                data = self.soc.recv(2**16)
                 data_list = self._check_for_multiple(data)
                 for item in data_list:
-                    jdata = json.loads(item.decode('utf-8'))
-                    func = self.handler[jdata['topic']]
-                    handler_thread = Thread(target=func, args=[jdata])
-                    handler_thread.start()
+                    try:
+                        jdata = json.loads(item.decode('utf-8'))
+                        func = self.handler[jdata['topic']]
+                        handler_thread = Thread(target=func, args=[jdata])
+                        handler_thread.start()
+                    except json.JSONDecodeError as e:
+                        print('\n\n', e)
+                        print('Caused by:', item)
             except socket.timeout:
                 pass
             except ConnectionResetError:

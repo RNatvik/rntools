@@ -72,7 +72,7 @@ class PublisherSocket:
         with self.con:
             while not self.shutdown:
                 try:
-                    data = self.con.recv(1024)
+                    data = self.con.recv(2**16)
                     if not data:
                         self.shutdown = True
                         break
