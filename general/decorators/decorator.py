@@ -37,7 +37,7 @@ def dir_active(directory):
     return decorator
 
 
-def clean_exit(exit_func):
+def clean_exit(exit_func, *exit_args, **exit_kwargs):
     """
     This decorator takes a function as a parameter which will be called if a keyboarad interrupt exception is caugth
     :param exit_func: the function to call if keyboard interrupt
@@ -49,7 +49,7 @@ def clean_exit(exit_func):
             try:
                 result = func(*args, **kwargs)
             except KeyboardInterrupt:
-                exit_func()
+                exit_func(*exit_args, **exit_kwargs)
             return result
         return wrapper
     return decorator
